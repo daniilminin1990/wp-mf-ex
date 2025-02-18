@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "noImplicitAny": true,
+    // "module": "es6",
+    "module": "ESNext", //
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "esModuleInterop": true, // включаем синтаксис экспорта череез import / export, а не стандартный commonJS синтаксис require / export.modules,
+    "moduleResolution": "node", // позволяет использовать node_modules чтобы убрать import * as ... from '...', и сделать без * as. То есть сам добавляет какой-то дефолтный импорт и мы можем убрать * as., даже если у библиотеки в node modules нет default-экспорта
+    "allowSyntheticDefaultImports": true, // Эта настройка тоже помогает нам убрать * as, РАБОТАЕТ В КОМБИНАЦИИ С moduleResolution
+    "baseUrl": ".", // Путь до базовой директории
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "ts-node": { // Добавили эти настройки
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}
