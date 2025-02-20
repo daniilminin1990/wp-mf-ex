@@ -1,6 +1,7 @@
 import { ModuleOptions } from 'webpack'
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {BuildOptions} from "./types/types";
+import ReactRefreshTypeScript from 'react-refresh-typescript'
 
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
 
@@ -25,26 +26,30 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
         'sass-loader' // компилирует sass в css
       ]
     }
-  const tsLoaders = {
-    // ts-loader умеет работать с JSX
-    // Если бы мы не использовали TS, то нужен был бы babel-loader
-    test: /\.tsx?$/,
-    use: 'ts-loader',
-    exclude: /node_modules/
-  }
-
   // const tsLoaders = {
   //   // ts-loader умеет работать с JSX
   //   // Если бы мы не использовали TS, то нужен был бы babel-loader
   //   test: /\.tsx?$/,
-  //   use: {
-  //     loader: 'ts-loader',
-  //     options: {
-  //       transpileOnly: true
-  //     }
-  //   },
-  //   exclude: /node_modules/,
+  //   use: 'ts-loader',
+  //   exclude: /node_modules/
   // }
+
+  const tsLoaders = {
+    // ts-loader умеет работать с JSX
+    // Если бы мы не использовали TS, то нужен был бы babel-loader
+    test: /\.tsx?$/,
+    use: {
+      loader: 'ts-loader',
+      options: {
+        transpileOnly: true,
+        getCustomTransformers: () => ({
+          // before: [isDevelopment && ReactRefreshTypeScript()].filter(Boolean),
+          before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+        }),
+      }
+    },
+    exclude: /node_modules/,
+  }
 
   const assetLoader = {
     // test: /\.(png|svg|jpg|jpeg|gif)$/i,

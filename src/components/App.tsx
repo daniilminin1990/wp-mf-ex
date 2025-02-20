@@ -15,18 +15,18 @@ export const App = () => {
     setCount(prev => prev + 1)
   }
 
-  TODO('111')
-
-  if(__PLATFORM__ === 'desktop') {
-    return <div>ISDESKTOPPLATFORM</div>
-  }
-  if(__PLATFORM__ === 'mobile') {
-    return <div>ISMOBILEPLATFORM</div>
-  }
-
-  if(__ENV__ === 'development') {
-    // addDevTools() // Например вызовем какую-то доп функцию для dev мода
-  }
+  // TODO('111')
+  //
+  // if(__PLATFORM__ === 'desktop') {
+  //   return <div>ISDESKTOPPLATFORM</div>
+  // }
+  // if(__PLATFORM__ === 'mobile') {
+  //   return <div>ISMOBILEPLATFORM</div>
+  // }
+  //
+  // if(__ENV__ === 'development') {
+  //   // addDevTools() // Например вызовем какую-то доп функцию для dev мода
+  // }
 
   return (
     <div>
