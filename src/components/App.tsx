@@ -11,8 +11,20 @@ export const App = () => {
     setCount(prev => prev + 1)
   }
 
+  if(__PLATFORM__ === 'desktop') {
+    return <div>ISDESKTOPPLATFORM</div>
+  }
+  if(__PLATFORM__ === 'mobile') {
+    return <div>ISMOBILEPLATFORM</div>
+  }
+
+  if(__ENV__ === 'development') {
+    // addDevTools() // Например вызовем какую-то доп функцию для dev мода
+  }
+
   return (
     <div>
+      <h1>PLATFORM = {__PLATFORM__}</h1>
       <div>
         <img src={pngImg} width={100} alt=""/>
         {pngImg}

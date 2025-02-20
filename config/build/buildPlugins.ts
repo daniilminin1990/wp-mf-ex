@@ -1,4 +1,4 @@
-import webpack, { Configuration } from 'webpack'
+import webpack, { Configuration, DefinePlugin } from 'webpack'
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
@@ -7,12 +7,16 @@ import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
 
 export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
 
-  const {mode, port, paths, analyzer} = options
+  const {mode, port, paths, analyzer, platform} = options
 
   const isDev = mode === 'development'
 
   const plugins: Configuration['plugins'] = [
     new HtmlWebpackPlugin({template: paths.html}),
+    new DefinePlugin({
+      __PLATFORM__: JSON.stringify(platform),
+      __ENV__: JSON.stringify(mode)
+    })
   ]
 
   if(isDev) {
