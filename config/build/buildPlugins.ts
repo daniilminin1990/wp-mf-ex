@@ -4,6 +4,7 @@ import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {BuildOptions} from "./types/types";
 import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 
 export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
 
@@ -16,11 +17,13 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
     new DefinePlugin({
       __PLATFORM__: JSON.stringify(platform),
       __ENV__: JSON.stringify(mode)
-    })
+    }),
   ]
 
   if(isDev) {
     plugins.push(new webpack.ProgressPlugin())
+    /** Выносит проверку типов в отдельный процесс, не нагружая сборку */
+    plugins.push(new ForkTsCheckerWebpackPlugin())
   }
 
   if(!isDev) {

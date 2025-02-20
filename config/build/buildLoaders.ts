@@ -26,10 +26,25 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
       ]
     }
   const tsLoaders = {
+    // ts-loader умеет работать с JSX
+    // Если бы мы не использовали TS, то нужен был бы babel-loader
     test: /\.tsx?$/,
     use: 'ts-loader',
     exclude: /node_modules/
   }
+
+  // const tsLoaders = {
+  //   // ts-loader умеет работать с JSX
+  //   // Если бы мы не использовали TS, то нужен был бы babel-loader
+  //   test: /\.tsx?$/,
+  //   use: {
+  //     loader: 'ts-loader',
+  //     options: {
+  //       transpileOnly: true
+  //     }
+  //   },
+  //   exclude: /node_modules/,
+  // }
 
   const assetLoader = {
     // test: /\.(png|svg|jpg|jpeg|gif)$/i,

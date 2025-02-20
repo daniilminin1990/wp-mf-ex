@@ -5,11 +5,17 @@ import pngImg from '@/assets/strictProsCons.png'
 import jpgImg from '@/assets/msie.jpg'
 import SvgComponent from '@/assets/free-delivery-free-svgrepo-com.svg'
 
+function TODO(a: number){
+  console.log('TODOFunction')
+}
+
 export const App = () => {
   const [count, setCount] = useState(0)
   const handlePlus = () => {
     setCount(prev => prev + 1)
   }
+
+  TODO('111')
 
   if(__PLATFORM__ === 'desktop') {
     return <div>ISDESKTOPPLATFORM</div>
