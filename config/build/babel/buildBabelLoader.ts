@@ -1,9 +1,16 @@
 import {BuildOptions} from "../types/types";
+import {removeDataTestIdBabelPlugin} from "./removeDataTestIdBabelPlugin";
 
 export function buildBabelLoader(options: BuildOptions) {
 
   const {mode} = options
   const isDev = mode === 'development'
+
+  const plugins = []
+
+  if(!isDev) {
+    plugins.push(removeDataTestIdBabelPlugin)
+  }
 
   return {
     test: /\.tsx$/,
@@ -18,6 +25,7 @@ export function buildBabelLoader(options: BuildOptions) {
             runtime: isDev ? 'automatic' : 'classic'
           }]
         ],
+        plugins
       }
     }
   }
