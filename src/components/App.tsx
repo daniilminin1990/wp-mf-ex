@@ -5,14 +5,22 @@ import pngImg from '@/assets/strictProsCons.png'
 import jpgImg from '@/assets/msie.jpg'
 import SvgComponent from '@/assets/free-delivery-free-svgrepo-com.svg'
 
-function TODO(a: number){
-  console.log('TODOFunction')
+// Дублируем функцию, чтобы был какой-то стэк рейс
+function TODO(){
+  // Вызовем одну в другой
+  TODO2()
+}
+
+function TODO2(){
+  throw new Error()
 }
 
 export const App = () => {
   const [count, setCount] = useState(0)
   const handlePlus = () => {
-    setCount(prev => prev + 1)
+    // setCount(prev => prev + 1)
+    // Будем вызывать TODO при нажатии на кнопку
+    TODO()
   }
 
   // TODO('111')
@@ -40,7 +48,6 @@ export const App = () => {
         {jpgImg}
       </div>
       <div>
-        {/*<SvgComponent width={200} height={200} strokeWidth={10} stroke="red" fill={'blue'} backgroundColor={'green'} style={{color: 'blue'}}/>*/}
         <SvgComponent width={200} height={200} strokeWidth={10} style={{backgroundColor: 'blue', stroke: 'green'}} />
       </div>
       <Link to={'/'}>Home</Link>
